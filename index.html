@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galaxia de Flores Amarillas</title>
+  <!-- Three.js para la galaxia 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #05020a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #ffffff;
+    }
+
+    #canvas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .Flores_Amarillas {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 90%;
+      max-width: 400px;
+      font-size: 1.2rem;
+      font-family: 'Georgia', serif;
+      height: auto;
+      transform: translate(-50%, -50%);
+      background: rgba(20, 10, 30, 0.65);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+      z-index: 10;
+      pointer-events: none;
+      animation: pulseGlow 3s infinite alternate;
+    }
+
+    .heart-center {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      animation: float 2s ease-in-out infinite alternate;
+    }
+
+    .Flores_Amarillas h2 {
+      color: #ffd700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+      margin-bottom: 0.5rem;
+    }
+
+    .Flores_Amarillas p {
+      color: #fff8dc;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+      }
+      100% {
+        box-shadow: 0 0 35px rgba(255, 215, 0, 0.5);
+      }
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      100% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="canvas-container"></div>
+
+  <div class="Flores_Amarillas">
+    <div class="heart-center">🌻</div>
+    <h2>Mi Amor</h2>
+    <p>Eres mi todo ✨</p>
+  </div>
+
+  <script>
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    camera.position.z = 5;
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
+
+    // Partículas de la galaxia
+    const particlesCount = 3500;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particlesCount * 3);
+    const colors = new Float32Array(particlesCount * 3);
+
+    const colorYellow = new THREE.Color(0xffd700);
+    const colorGold = new THREE.Color(0xffaa00);
+
+    for (let i = 0; i < particlesCount; i++) {
+      const radius = Math.random() * 4 + 0.5;
+      const spinAngle = radius * 2;
+      const branchAngle = ((i % 3) * 2 * Math.PI) / 3;
+
+      const randomX = (Math.random() - 0.5) * 0.3;
+      const randomY = (Math.random() - 0.5) * 0.3;
+      const randomZ = (Math.random() - 0.5) * 0.3;
+
+      positions[i * 3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
+      positions[i * 3 + 1] = randomY;
+      positions[i * 3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
+
+      const mixedColor = colorYellow.clone().lerp(colorGold, Math.random());
+      colors[i * 3] = mixedColor.r;
+      colors[i * 3 + 1] = mixedColor.g;
+      colors[i * 3 + 2] = mixedColor.b;
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+    const material = new THREE.PointsMaterial({
+      size: 0.025,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending
+    });
+
+    const galaxyParticles = new THREE.Points(geometry, material);
+    scene.add(galaxyParticles);
+
+    function animate() {
+      requestAnimationFrame(animate);
+      galaxyParticles.rotation.y += 0.002;
+      galaxyParticles.rotation.x = Math.sin(Date.now() * 0.0005) * 0.1;
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
