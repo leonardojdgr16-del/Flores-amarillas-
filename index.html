@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Para Mi Niña Preciosa 🌻</title>
+  <title>Galaxia de Flores Amarillas</title>
   <style>
     * {
       margin: 0;
@@ -14,8 +14,8 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background: #020108;
-      font-family: 'Segoe UI', Roboto, sans-serif;
+      background: #020106;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     #canvas-container {
       width: 100vw;
@@ -26,63 +26,57 @@
       z-index: 1;
     }
 
-    /* Tarjeta flotante con código CSS (estética del video) */
+    /* Tarjeta flotante CSS del video */
     .css-card {
       position: absolute;
-      bottom: 25px;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      width: 88%;
-      max-width: 330px;
-      background: rgba(12, 10, 24, 0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 215, 0, 0.35);
+      width: 90%;
+      max-width: 340px;
+      background: rgba(10, 8, 20, 0.8);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 215, 0, 0.25);
       border-radius: 16px;
       padding: 12px 16px;
       z-index: 10;
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.15);
       font-family: 'Courier New', Courier, monospace;
       font-size: 0.75rem;
       color: #f0f0f0;
       cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .css-card:hover {
-      transform: translateX(-50%) scale(1.02);
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
     }
     .css-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
       padding-bottom: 4px;
     }
-    .dots { display: flex; gap: 6px; }
-    .dot { width: 9px; height: 9px; border-radius: 50%; }
+    .dots { display: flex; gap: 5px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
     .dot.red { background: #ff5f56; }
     .dot.yellow { background: #ffbd2e; }
     .dot.green { background: #27c93f; }
-    .filename { color: #aaa; font-size: 0.7rem; }
-    .code-line { line-height: 1.4; }
+    .filename { color: #888; font-size: 0.7rem; }
+    .code-line { line-height: 1.35; }
     .selector { color: #f1fa8c; }
     .property { color: #8be9fd; }
     .value { color: #ff79c6; }
 
-    /* Etiquetas de texto flotantes 3D */
+    /* Textos Flotantes 3D */
     .floating-label {
       position: absolute;
       color: #fff8dc;
       font-family: 'Georgia', serif;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       text-shadow: 0 0 8px rgba(255, 215, 0, 0.9), 0 0 16px rgba(255, 140, 0, 0.8);
       pointer-events: none;
       white-space: nowrap;
       transform: translate(-50%, -50%);
       transition: opacity 0.3s;
       font-weight: bold;
-      letter-spacing: 0.5px;
     }
 
     /* Modal / Carta interactiva desplegable */
@@ -92,7 +86,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       backdrop-filter: blur(8px);
       z-index: 100;
       display: flex;
@@ -100,58 +94,47 @@
       align-items: center;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.3s ease;
     }
     .modal-overlay.active {
       opacity: 1;
       pointer-events: auto;
     }
     .letter-card {
-      background: linear-gradient(135deg, #1f1a00 0%, #0a0812 100%);
-      border: 1.5px solid #ffd700;
+      background: #0d0a1a;
+      border: 1px solid #ffd700;
       border-radius: 20px;
       padding: 24px;
-      max-width: 340px;
+      max-width: 320px;
       width: 85%;
       text-align: center;
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.3);
       color: #fff8dc;
       position: relative;
-      transform: translateY(20px);
-      transition: transform 0.4s ease;
-    }
-    .modal-overlay.active .letter-card {
-      transform: translateY(0);
     }
     .letter-card h2 {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: #ffd700;
       margin-bottom: 12px;
-      font-family: 'Georgia', serif;
     }
     .letter-card p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       line-height: 1.5;
-      color: #e6e6e6;
-      margin-bottom: 20px;
+      color: #e0e0e0;
+      margin-bottom: 18px;
     }
     .close-btn {
       background: #ffd700;
       color: #000;
       border: none;
-      padding: 8px 24px;
-      border-radius: 20px;
+      padding: 6px 20px;
+      border-radius: 15px;
       font-weight: bold;
       cursor: pointer;
-      font-size: 0.85rem;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .close-btn:active {
-      transform: scale(0.95);
+      font-size: 0.8rem;
     }
   </style>
 
-  <!-- Three.js y OrbitControls -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 </head>
@@ -159,7 +142,7 @@
 
   <div id="canvas-container"></div>
 
-  <!-- Tarjeta con código (al tocarla abre la carta) -->
+  <!-- Tarjeta de código estilo VS Code del video -->
   <div class="css-card" id="open-letter">
     <div class="css-header">
       <div class="dots">
@@ -180,13 +163,16 @@
     <div class="code-line">}</div>
   </div>
 
-  <!-- Ventana emergente con la carta -->
+  <!-- Carta Emergente -->
   <div class="modal-overlay" id="modal">
     <div class="letter-card">
-      <h2>Para mi niña preciosa 🌻</h2>
+      <h2>Para mi niña hermosa 🌻</h2>
       <p>
         Qué afortunado soy de compartir mi vida contigo porque tú haces que mi vida sea más hermosa.
-        Un detalle amarillo para iluminar siempre tu camino. ¡Te amo con todo mi corazón!
+        <br><br>
+        <strong>¡TE QUIERO!</strong>
+        <br>
+        ¡Feliz día de las flores amarillas!
       </p>
       <button class="close-btn" id="close-letter">Cerrar</button>
     </div>
@@ -195,13 +181,12 @@
   <div id="labels-container"></div>
 
   <script>
-    // 1. Escena 3D
     const container = document.getElementById('canvas-container');
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x020108, 0.025);
+    scene.fog = new THREE.FogExp2(0x020106, 0.02);
 
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 7, 16);
+    camera.position.set(0, 8, 15);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -212,98 +197,78 @@
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.maxDistance = 25;
-    controls.minDistance = 4;
+    controls.minDistance = 5;
 
-    // 2. Luces
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
     scene.add(ambientLight);
 
-    const centerLight = new THREE.PointLight(0xffd700, 4, 18);
-    centerLight.position.set(0, 0, 0);
-    scene.add(centerLight);
-
-    // 3. Crear textura de Ramo / Flor Amarilla brillante
-    function createBouquetTexture() {
+    // Textura de Flores Amarillas
+    function createFlowerTexture() {
       const canvas = document.createElement('canvas');
-      canvas.width = 256;
-      canvas.height = 256;
+      canvas.width = 128;
+      canvas.height = 128;
       const ctx = canvas.getContext('2d');
 
-      // Dibujar ramo de flores
-      const drawFlower = (cx, cy, r) => {
-        // Pétalos
-        ctx.fillStyle = '#ffd700';
-        for (let i = 0; i < 12; i++) {
-          const angle = (i * Math.PI) / 6;
-          ctx.beginPath();
-          ctx.arc(cx + Math.cos(angle) * r, cy + Math.sin(angle) * r, r * 0.45, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        // Centro
-        ctx.beginPath();
-        ctx.arc(cx, cy, r * 0.5, 0, Math.PI * 2);
-        ctx.fillStyle = '#5c2d12';
-        ctx.fill();
-      };
-
-      drawFlower(128, 110, 32);
-      drawFlower(90, 150, 26);
-      drawFlower(166, 150, 26);
-
-      // Lazos/hojas verdes en la base
-      ctx.fillStyle = '#2d8a4e';
+      // Centro
       ctx.beginPath();
-      ctx.arc(128, 180, 20, 0, Math.PI * 2);
+      ctx.arc(64, 64, 18, 0, Math.PI * 2);
+      ctx.fillStyle = '#4a2500';
       ctx.fill();
 
+      // Pétalos
+      for (let i = 0; i < 12; i++) {
+        const angle = (i * Math.PI) / 6;
+        ctx.save();
+        ctx.translate(64, 64);
+        ctx.rotate(angle);
+        ctx.beginPath();
+        ctx.ellipse(0, 35, 7, 18, 0, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffd700';
+        ctx.fill();
+        ctx.restore();
+      }
       return new THREE.CanvasTexture(canvas);
     }
 
-    const bouquetTexture = createBouquetTexture();
+    const flowerTexture = createFlowerTexture();
     const galaxyGroup = new THREE.Group();
     scene.add(galaxyGroup);
 
-    // 4. Agregar Ramos en espiral
-    const bouquetMat = new THREE.SpriteMaterial({ map: bouquetTexture, transparent: true });
-    const bouquetCount = 45;
-
-    for (let i = 0; i < bouquetCount; i++) {
-      const sprite = new THREE.Sprite(bouquetMat);
-      const radius = Math.random() * 9 + 1.2;
-      const angle = radius * 2.2 + ((Math.PI * 2) / 3) * (i % 3);
+    // Flores distribuidas
+    const flowerMat = new THREE.SpriteMaterial({ map: flowerTexture, transparent: true });
+    for (let i = 0; i < 50; i++) {
+      const sprite = new THREE.Sprite(flowerMat);
+      const radius = Math.random() * 8 + 1;
+      const angle = radius * 2.5 + ((Math.PI * 2) / 3) * (i % 3);
 
       sprite.position.x = Math.cos(angle) * radius;
       sprite.position.z = Math.sin(angle) * radius;
-      sprite.position.y = (Math.random() - 0.5) * 1.2;
+      sprite.position.y = (Math.random() - 0.5) * 1.5;
 
-      const scale = Math.random() * 0.35 + 0.65;
+      const scale = Math.random() * 0.4 + 0.5;
       sprite.scale.set(scale, scale, 1);
       galaxyGroup.add(sprite);
     }
 
-    // 5. Partículas en Espiral Dorada (Galaxia de luz)
-    const particlesCount = 3500;
+    // Partículas de luz de la galaxia
+    const particlesCount = 3000;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particlesCount * 3);
     const colors = new Float32Array(particlesCount * 3);
 
     const cGold = new THREE.Color(0xffd700);
-    const cOrange = new THREE.Color(0xffa500);
+    const cWhite = new THREE.Color(0xffffff);
 
     for (let i = 0; i < particlesCount; i++) {
-      const radius = Math.random() * 11 + 0.1;
-      const spinAngle = radius * 2.5;
+      const radius = Math.random() * 10 + 0.1;
+      const spinAngle = radius * 3;
       const branchAngle = ((i % 3) * 2 * Math.PI) / 3;
 
-      const randomX = (Math.random() - 0.5) * 0.4;
-      const randomY = (Math.random() - 0.5) * 0.8;
-      const randomZ = (Math.random() - 0.5) * 0.4;
+      positions[i * 3] = Math.cos(branchAngle + spinAngle) * radius + (Math.random() - 0.5) * 0.3;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 0.6;
+      positions[i * 3 + 2] = Math.sin(branchAngle + spinAngle) * radius + (Math.random() - 0.5) * 0.3;
 
-      positions[i * 3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
-      positions[i * 3 + 1] = randomY;
-      positions[i * 3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
-
-      const mixedColor = cGold.clone().lerp(cOrange, Math.random());
+      const mixedColor = cGold.clone().lerp(cWhite, Math.random() * 0.5);
       colors[i * 3] = mixedColor.r;
       colors[i * 3 + 1] = mixedColor.g;
       colors[i * 3 + 2] = mixedColor.b;
@@ -313,38 +278,20 @@
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const particleMat = new THREE.PointsMaterial({
-      size: 0.055,
+      size: 0.05,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.9,
       blending: THREE.AdditiveBlending
     });
 
-    const galaxyParticles = new THREE.Points(geometry, particleMat);
-    galaxyGroup.add(galaxyParticles);
+    const particles = new THREE.Points(geometry, particleMat);
+    galaxyGroup.add(particles);
 
-    // 6. Corazón en el núcleo
-    const heartShape = new THREE.Shape();
-    heartShape.moveTo(0, 0);
-    heartShape.bezierCurveTo(0, 0.3, -0.5, 0.8, -1, 0.8);
-    heartShape.bezierCurveTo(-1.8, 0.8, -1.8, -0.2, -1.8, -0.2);
-    heartShape.bezierCurveTo(-1.8, -0.8, -1, -1.4, 0, -2);
-    heartShape.bezierCurveTo(1, -1.4, 1.8, -0.8, 1.8, -0.2);
-    heartShape.bezierCurveTo(1.8, -0.2, 1.8, 0.8, 1, 0.8);
-    heartShape.bezierCurveTo(0.5, 0.8, 0, 0.3, 0, 0);
-
-    const heartGeo = new THREE.ShapeGeometry(heartShape);
-    const heartMat = new THREE.MeshBasicMaterial({ color: 0xffe066, side: THREE.DoubleSide });
-    const heartMesh = new THREE.Mesh(heartGeo, heartMat);
-    heartMesh.scale.set(0.35, 0.35, 0.35);
-    heartMesh.rotation.x = Math.PI;
-    heartMesh.position.y = 0.4;
-    scene.add(heartMesh);
-
-    // 7. Frases Flotantes Personalizadas
+    // Frases del video
     const phrases = [
-      "Te amo", "Mi niña preciosa", "Mi reina", "Mi Amor", 
-      "Eres mi sol", "Me encantas", "Siempre juntos", "Amor de mi vida"
+      "Te Amo 💛", "Eres mi sol ☀️", "Mi Amor", "Eres preciosa 🌸",
+      "Te adoro 🫶", "Siempre juntos 💍", "Eres mi todo 💖", "Amor de mi vida"
     ];
 
     const labelsContainer = document.getElementById('labels-container');
@@ -356,11 +303,11 @@
       div.innerText = text;
       labelsContainer.appendChild(div);
 
-      const radius = Math.random() * 7 + 2.5;
+      const radius = Math.random() * 6 + 2;
       const angle = Math.random() * Math.PI * 2;
       const pos = new THREE.Vector3(
         Math.cos(angle) * radius,
-        (Math.random() - 0.5) * 1.8,
+        (Math.random() - 0.5) * 1.5,
         Math.sin(angle) * radius
       );
 
@@ -381,25 +328,17 @@
       });
     }
 
-    // 8. Bucle de Animación
+    // Animación
     function animate() {
       requestAnimationFrame(animate);
-
-      galaxyGroup.rotation.y += 0.0028;
-
-      // Animación suave de latido del corazón
-      const s = 0.32 + Math.sin(Date.now() * 0.0035) * 0.04;
-      heartMesh.scale.set(s, s, s);
-      heartMesh.rotation.y += 0.01;
-
+      galaxyGroup.rotation.y += 0.003;
       controls.update();
       updateLabels();
       renderer.render(scene, camera);
     }
-
     animate();
 
-    // Eventos de la carta interactiva
+    // Eventos Carta
     const modal = document.getElementById('modal');
     document.getElementById('open-letter').addEventListener('click', () => {
       modal.classList.add('active');
@@ -408,7 +347,6 @@
       modal.classList.remove('active');
     });
 
-    // Resize
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
